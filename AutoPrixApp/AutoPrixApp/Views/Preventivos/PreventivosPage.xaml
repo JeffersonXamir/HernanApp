@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPrixApp.Views.Preventivos.PreventivosPage"
+             xmlns:local="clr-namespace:AutoPrixApp.ViewModels"
+             xmlns:model="clr-namespace:AutoPrixApp.Models"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">white</Color>
+            <Style x:Key="myBodyStyle"
+                   TargetType="Label"
+                   BaseResourceKey="BodyStyle">
+                <Setter Property="TextColor"
+                        Value="Accent" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android"
+                        Value="20,10,20,30" />
+                    <On Platform="ios"
+                        Value="20,40,20,60" />
+                </OnPlatform>
+            </StackLayout.Padding>
+            <StackLayout BackgroundColor="{StaticResource Accent}"
+                         VerticalOptions="FillAndExpand"
+                         HorizontalOptions="Fill">
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center">
+                    <ContentView Padding="0,0,0,0"
+                                 VerticalOptions="FillAndExpand">
+                        <Image Source="logo1White.png"
+                               VerticalOptions="FillAndExpand"
+                               HeightRequest="100" />
+                    </ContentView>
+                </StackLayout>
+            </StackLayout>
+            <Frame Padding="10,5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <SearchBar x:Name="txtSearch"
+                               Placeholder="cedula.."
+                               FontSize="Subtitle"
+                               HorizontalOptions="FillAndExpand"
+                               SearchCommand="{Binding PerformSearch}"
+                               SearchCommandParameter="{Binding Text, Source={x:Reference txtSearch}}"
+                               Keyboard="Numeric">
+                    </SearchBar>
+                </Grid>
+            </Frame>
+            <StackLayout>
+                <!--
+                <ListView x:Name="ListaVehiculos">
+                </ListView>
+                -->
+                <RefreshView x:DataType="local:PreventivosViewModel"
+                             RefreshColor="#2374FF"
+                             Command="{Binding LoadItemsCommand}"
+                             CommandParameter="{Binding Text, Source={x:Reference txtSearch}}"
+                             IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                    <CollectionView x:Name="ItemsListView"
+                                    ItemsSource="{Binding Items}"
+                                    SelectionMode="Single">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Padding="10"
+                                             x:DataType="model:VehiculosClientes">
+                                    <Label Text="{Binding cliente}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{StaticResource myBodyStyle}"
+                                           FontSize="16" />
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="{Binding vehiculo}"
+                                               LineBreakMode="NoWrap"
+                                               Style="{DynamicResource ListItemDetailTextStyle}"
+                                               FontSize="13" />
+
+                                        <Label Text="{Binding placa}"
+                                               LineBreakMode="NoWrap"
+                                               Style="{DynamicResource ListItemDetailTextStyle}"
+                                               FontSize="13"
+                                               HorizontalTextAlignment="End"
+                                               Grid.Column="1" />
+                                    </Grid>
+
+
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                              Command="{Binding Source={RelativeSource AncestorType={x:Type local:PreventivosViewModel}}, Path=ItemTapped}"
+                                                              CommandParameter="{Binding .}">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <ContentView>
+                                <StackLayout HorizontalOptions="CenterAndExpand"
+                                             VerticalOptions="CenterAndExpand">
+                                    <Label Text="No hay resultados que mostrar!"
+                                           Margin="10,25,10,10"
+                                           FontAttributes="Bold"
+                                           FontSize="18"
+                                           HorizontalOptions="Fill"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Text="Ingresa o verifica nuevamente la cedula..."
+                                           FontAttributes="Italic"
+                                           FontSize="12"
+                                           HorizontalOptions="Fill"
+                                           HorizontalTextAlignment="Center" />
+                                </StackLayout>
+                            </ContentView>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </RefreshView>
+            </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

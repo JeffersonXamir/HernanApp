@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:local="clr-namespace:AutoPrixApp.Models"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.TabBarIsVisible="True"
+             Shell.PresentationMode="ModalAnimated"
+             x:Class="AutoPrixApp.Views.LoginPageAP">
+    <!-- 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    -->
+    
+    <Grid BackgroundColor="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <StackLayout Margin="10,0">
+            <Frame BackgroundColor="White" Padding="20" CornerRadius="0">
+                <!-- <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/> -->
+                <Image Source="IconHernan.png"></Image>
+            </Frame>
+            
+            <!-- <Label Text="Ingreso a AutoPrix2" Style="{StaticResource TitleLabelStyle}" /> -->
+
+            <telerikInput:RadEntry Text="{Binding Username, Mode=TwoWay}"
+                                   WatermarkText="Usuario"
+                                   Style="{StaticResource LoginEntryStyle}" />
+
+            <telerikInput:RadEntry Text="{Binding Password, Mode=TwoWay}"
+                                   IsPassword="True"
+                                   WatermarkText="Contraseña"
+                                   Style="{StaticResource LoginEntryStyle}" />
+
+            <telerikInput:RadButton Text="Iniciar Sesión"
+                                    Command="{Binding LoginCommand}"
+                                    CommandParameter="{x:Static local:LoginType.Normal}"
+                                    Style="{StaticResource ActionButtonStyle}" />
+
+            <!-- <telerikInput:RadButton Text="Olvidaste tu contraseña?"
+                                    Command="{Binding GoToViewCommand}"
+                                    CommandParameter="{x:Static local:ViewType.PasswordResetView}"
+                                    Style="{StaticResource SecondaryActionButtonStyle}"
+                                    FontAttributes="None" /> -->
+            <telerikPrimitives:RadBusyIndicator x:Name="BusyIndicator"
+                                       AnimationType="Animation8"
+                                       AnimationContentColor="#2374FF"
+                                       AnimationContentHeightRequest="100"
+                                       AnimationContentWidthRequest="100"
+                                       IsBusy="{Binding IsBusy}">
+                <telerikPrimitives:RadBusyIndicator.BusyContent>
+                    <Label HorizontalOptions="Center"
+                           Text="Cargando..."
+                           VerticalOptions="Center" 
+                           TextColor="#2374FF"/>
+                </telerikPrimitives:RadBusyIndicator.BusyContent>
+            </telerikPrimitives:RadBusyIndicator>
+        </StackLayout>
+        
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="¿No tienes una cuenta?"
+                   Style="{StaticResource NormalLabelStyle}"/>
+
+            <telerikInput:RadButton Text="Crear una Cuenta"
+                                    Command="{Binding GoToViewCommand}"
+                                    CommandParameter="{x:Static local:ViewType.SignUpView}"
+                                    Style="{StaticResource SecondaryActionButtonStyle}"
+                                    Grid.Column="1" />
+        </Grid>
+        <!--
+        <ActivityIndicator x:Name="activityIndicator" 
+                           IsRunning="{Binding IsBusy}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           Color="Blue">
+        </ActivityIndicator>
+        -->
+
+        
+    </Grid>
+    
+</ContentPage>

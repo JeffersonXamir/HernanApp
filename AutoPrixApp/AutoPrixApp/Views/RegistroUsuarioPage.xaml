@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:local="clr-namespace:AutoPrixApp.Models"
+             xmlns:vm="clr-namespace:AutoPrixApp.ViewModels"
+             x:Class="AutoPrixApp.Views.RegistroUsuarioPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+
+        <StackLayout>
+            <ScrollView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Margin="10,0">
+                        <StackLayout Orientation="Horizontal" Margin="20,0">
+                            <Image Source="IconHernan.png" WidthRequest="120" HeightRequest="60" ></Image>
+                            <Label Text="Crear una cuenta" Style="{StaticResource TitleLabelStyle}" />
+                        </StackLayout>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <telerikInput:RadEntry Text="{Binding Nombre1, Mode=TwoWay}"
+                                   WatermarkText="Nombres"
+                                   Style="{StaticResource LoginEntryStyle}" />
+                            <telerikInput:RadEntry Text="{Binding Nombre2, Mode=TwoWay}"
+                                   WatermarkText=""
+                                   Style="{StaticResource LoginEntryStyle}" Grid.Column="1"/>
+                        </Grid>
+
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <telerikInput:RadEntry Text="{Binding Apellido1, Mode=TwoWay}"
+                                   WatermarkText="Apellidos"
+                                   Style="{StaticResource LoginEntryStyle}" />
+                            <telerikInput:RadEntry Text="{Binding Apellido2, Mode=TwoWay}"
+                                   WatermarkText=""
+                                   Style="{StaticResource LoginEntryStyle}" Grid.Column="1"/>
+                        </Grid>
+                        <!-- -->
+
+                        <telerikInput:RadDatePicker x:Name="datePicker"
+                                                    Date="{Binding FechaNacimiento}"
+                                                    SpinnerStyle="{StaticResource spinnerStyle}"
+                                                    SelectionHighlightStyle="{StaticResource selectionHighlightStyle}"
+                                                    DisplayLabelStyle="{StaticResource displayLabelStyle}"
+                                                    PlaceholderLabelStyle="{StaticResource placeholderLabelStyle}"
+                                                    MinimumDate="1900,1,1"
+                                                    DefaultHighlightedDate="2020,01,01"
+                                                    Placeholder="Fecha de Nacimiento"
+                                                    SpinnerFormat="dd/MMMM/yyyy"
+                                                    DisplayStringFormat="dd/MMMM/yyyy"
+                                                    >
+                            <telerikInput:RadDatePicker.SelectorSettings>
+                                <telerikInput:PickerPopupSelectorSettings 
+                                                  PopupViewStyle="{StaticResource popupViewStyle}"
+                                                  HeaderStyle="{StaticResource headerStyle}"
+                                                  HeaderLabelText="Cumpleaños"
+                                                  HeaderLabelStyle="{StaticResource headerLabelStyle}"
+                                                  FooterStyle="{StaticResource footerStyle}"
+                                                  AcceptButtonStyle="{StaticResource acceptButtonStyle}"
+                                                  CancelButtonStyle="{StaticResource cancelButtonStyle}"
+                                                  AcceptCommand="{Binding Accept}" 
+                                                  CancelCommand="{Binding Cancel}"/>
+                            </telerikInput:RadDatePicker.SelectorSettings>
+                        </telerikInput:RadDatePicker>
+
+
+                        <telerikInput:RadEntry Text="{Binding Cedula, Mode=TwoWay}"
+                                               WatermarkText="Cedula"
+                                               Keyboard="Numeric"
+                                               Style="{StaticResource LoginEntryStyle}" />
+
+                        <telerikInput:RadEntry Text="{Binding Telefono, Mode=TwoWay}"
+                                               WatermarkText="Telefono"
+                                               Keyboard="Numeric"
+                                               Style="{StaticResource LoginEntryStyle}" />
+
+                        <telerikInput:RadEntry Text="{Binding Email, Mode=TwoWay}"
+                                   WatermarkText="Email"
+                                   Style="{StaticResource LoginEntryStyle}" />
+
+                        <telerikInput:RadEntry Text="{Binding Usuario, Mode=TwoWay}"
+                                   WatermarkText="Usuario"
+                                   Style="{StaticResource LoginEntryStyle}" />
+
+                        <telerikInput:RadEntry Text="{Binding Contrasenia, Mode=TwoWay}"
+                                   IsPassword="True"
+                                   WatermarkText="Contraseña"
+                                   Style="{StaticResource LoginEntryStyle}" />
+
+
+                        <telerikInput:RadButton Text="{Binding TexBtnRegistrar}"
+                                    Command="{Binding LoginCommand}"
+                                    CommandParameter="{x:Static local:LoginType.SignUp}"
+                                    Style="{StaticResource ActionButtonStyle}" />
+                    </StackLayout>
+
+                    <Grid Grid.Row="2" IsVisible="{Binding IsBusy}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="¿Ya tienes una cuenta?"
+                   Style="{StaticResource NormalLabelStyle}"/>
+
+                        <telerikInput:RadButton Text="Iniciar Sesión"
+                                    Command="{Binding GoToViewCommand}"
+                                    CommandParameter="{x:Static local:ViewType.LoginView}"
+                                    Style="{StaticResource SecondaryActionButtonStyle}"
+                                    Grid.Column="1" />
+                    </Grid>
+                </Grid>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

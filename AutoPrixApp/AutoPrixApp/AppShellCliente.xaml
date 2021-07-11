@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPrixApp.AppShellCliente">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">white</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#303F9F">
+            <Grid VerticalOptions="CenterAndExpand"
+                  HorizontalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Image Source="IconHernan3"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       Grid.Row="0">
+                </Image>
+                <Label Text="PAGINA EN MANTENIMIENTO..."
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       TextColor="{StaticResource Accent}"
+                       Grid.Row="1"
+                       FontSize="Body" />
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

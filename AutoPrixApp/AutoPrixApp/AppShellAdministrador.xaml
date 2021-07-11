@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="AutoPrixApp.AppShellAdministrador"
+       xmlns:local="clr-namespace:AutoPrixApp.Views"
+       xmlns:vmMecanica="clr-namespace:AutoPrixApp.Views.Mecanica"
+       xmlns:vmMantenimientoGrnl="clr-namespace:AutoPrixApp.Views.MantenimientoGnrl"
+       xmlns:vmMantenimientoMC="clr-namespace:AutoPrixApp.Views.MantenimientoMontacarga"
+       xmlns:vmPreventivos="clr-namespace:AutoPrixApp.Views.Preventivos"
+       Shell.FlyoutBehavior="Flyout">
+    
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle"
+                   TargetType="Element">
+                <Setter Property="Shell.BackgroundColor"
+                        Value="{StaticResource Primary}" />
+                <Setter Property="Shell.ForegroundColor"
+                        Value="White" />
+                <Setter Property="Shell.TitleColor"
+                        Value="White" />
+                <Setter Property="Shell.DisabledColor"
+                        Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor"
+                        Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor"
+                        Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarForegroundColor"
+                        Value="White" />
+                <Setter Property="Shell.TabBarUnselectedColor"
+                        Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarTitleColor"
+                        Value="White" />
+            </Style>
+            <Style TargetType="TabBar"
+                   BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem"
+                   BasedOn="{StaticResource BaseStyle}" />
+
+           
+            <Style Class="FlyoutItemLabelStyle"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="White"></Setter>
+            </Style>
+            <Style Class="FlyoutItemLayoutStyle"
+                   TargetType="Layout"
+                   ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor"
+                        Value="LightBlue"></Setter>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="White" />
+                                    <Setter TargetName="FlyoutItemLabel"
+                                            Property="Label.TextColor"
+                                            Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <!--
+            Custom Style you can apply to any Flyout Item
+            -->
+            <Style Class="MenuItemLayoutStyle"
+                   TargetType="Layout"
+                   ApplyToDerivedTypes="True">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="FlyoutItemLabel"
+                                            Property="Label.TextColor"
+                                            Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    
+    <Shell.FlyoutHeader>
+        <local:HeaderContentView />
+    </Shell.FlyoutHeader>
+
+
+    <FlyoutItem Title="Mecánica Gasolina y Diésel"
+                x:Name="ServicioMecanica"
+                Icon="tools.png">
+        <ShellContent Title="Mecanica"
+                      Route="ServicioMecanica"
+                      x:Name="MecanicaGnrl"
+                      ContentTemplate="{DataTemplate vmMecanica:mecanicaPage}">
+        </ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Mantenimiento General"
+                x:Name="ServicioMantenimientoGnrl"
+                Icon="car.png">
+        <ShellContent Title="Mantenimiento General"
+                      Route="ServicioMantenimientoGnrl"
+                      x:Name="MantenimientoGnrl"
+                      ContentTemplate="{DataTemplate vmMantenimientoGrnl:MantenimientoGnrlPage}">
+        </ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Preventivos"
+                x:Name="ServicioPreventivos"
+                Icon="tab_about.png">
+        <ShellContent Title="Preventivos"
+                      Route="ServicioPreventivos"
+                      x:Name="Preventivos"
+                      ContentTemplate="{DataTemplate vmPreventivos:PreventivosPage}">
+        </ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Mantenimiento Montacargas"
+                x:Name="ServicioMantenimientoMC"
+                Icon="car_repair.png">
+        <ShellContent Title="Mantenimiento Montacargas"
+                      Route="ServicioMantenimientoMC"
+                      x:Name="MantenimientoMC"
+                      ContentTemplate="{DataTemplate vmMantenimientoMC:MantenimientoMCPage}">
+        </ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Registrar Empleado"
+                x:Name="ServicioRegistroEmpleado"
+                Icon="account.png">
+        <ShellContent Title="Registrar Empleado"
+                      Route="RegistroEmpleado"
+                      x:Name="RegistroEmpleado"
+                      ContentTemplate="{DataTemplate local:RegistroUsuarioPage}">
+        </ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Acerca"
+                Icon="tab_about.png"
+                x:Name="Acerca">
+        <Tab Title="Visión"
+             x:Name="AcercaTab1">
+            <ShellContent Title="About"
+                          Route="AboutPage"
+                          x:Name="AboutPage"
+                          ContentTemplate="{DataTemplate local:AboutPage}">
+            </ShellContent>
+        </Tab>
+        
+    </FlyoutItem>
+
+    <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
+    <MenuItem Text="Salir"
+              Icon="exit_app.png"
+              Clicked="OnMenuItemClicked">
+    </MenuItem>
+
+</Shell>

@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPrixApp.Views.MantenimientoGnrl.EstadoLlantasPage"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">white</Color>
+            <Color x:Key="ColorLabel1">DarkSeaGreen</Color>
+            <Color x:Key="ColorLabel2">DodgerBlue</Color>
+            <Style x:Key="myBodyStyle"
+                   TargetType="Label"
+                   BaseResourceKey="BodyStyle">
+                <Setter Property="TextColor"
+                        Value="Accent" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame Padding="0,0,0,0"
+                       BackgroundColor="Transparent">
+                    <StackLayout BackgroundColor="{StaticResource Accent}"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center">
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="FillAndExpand">
+                            <ContentView Padding="0,0,0,0"
+                                         VerticalOptions="FillAndExpand">
+                                <Image Source="cambioNeumaticos.jpg"
+                                       VerticalOptions="FillAndExpand"
+                                       HeightRequest="185" />
+                            </ContentView>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Label Text="Presión de Llantas"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontSize="Title"
+                       Style="{StaticResource myBodyStyle}" />
+                <Frame BackgroundColor="Transparent"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center">
+                    <StackLayout>
+                        <Label FontSize="Subtitle"
+                               FontAttributes="Italic"
+                               Text="Presión Llanta Delantera Izquierda"
+                               TextColor="{StaticResource ColorLabel1}"
+                               VerticalOptions="Start"
+                               HorizontalOptions="Start" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image 
+                                   Grid.Column="0"
+                                   HeightRequest="45"
+                                   WidthRequest="45"
+                                   HorizontalOptions="Center"
+                                   Source="presionNeumaticos.png"
+                                   VerticalOptions="Center" />
+                            <telerikInput:RadEntry Text="{Binding Presion1, Mode=TwoWay}"
+                                                   WatermarkText=""
+                                                   Keyboard="Numeric"
+                                                   WidthRequest="200"
+                                                   Style="{StaticResource LoginEntryStyle}"
+                                                   Grid.Column="1" />
+                            <Label 
+                                   Grid.Column="2"
+                                   Text="Psi."
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center" />
+                        </Grid>
+                        <Editor Text="{Binding Presion1Observ, Mode=TwoWay}"
+                                Keyboard="Text"
+                                Placeholder="Detalle..."
+                                PlaceholderColor="DimGray"
+                                BackgroundColor="AliceBlue"
+                                HeightRequest="80">
+                        </Editor>
+                        <!-- 2 Label -->
+                        <Label FontSize="Subtitle"
+                               FontAttributes="Italic"
+                               Text="Presión Llanta Delantera Derecha"
+                               TextColor="{StaticResource ColorLabel1}"
+                               VerticalOptions="Start"
+                               HorizontalOptions="Start" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0"
+                                   HeightRequest="45"
+                                   WidthRequest="45"
+                                   HorizontalOptions="Center"
+                                   Source="presionNeumaticos.png"
+                                   VerticalOptions="Center" />
+                            <telerikInput:RadEntry Text="{Binding Presion2, Mode=TwoWay}"
+                                                   WatermarkText=""
+                                                   Keyboard="Numeric"
+                                                   WidthRequest="200"
+                                                   Style="{StaticResource LoginEntryStyle}"
+                                                   Grid.Column="1" />
+                            <Label Grid.Column="2"
+                                   Text="Psi."
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center" />
+                        </Grid>
+                        <Editor Text="{Binding Presion2Observ, Mode=TwoWay}"
+                                Keyboard="Text"
+                                Placeholder="Detalle..."
+                                PlaceholderColor="DimGray"
+                                BackgroundColor="AliceBlue"
+                                HeightRequest="80">
+                        </Editor>
+                        <!-- 3 Label -->
+                        <Label FontSize="Subtitle"
+                               FontAttributes="Italic"
+                               Text="Presión Llanta Trasera Izquierda"
+                               TextColor="{StaticResource ColorLabel2}"
+                               VerticalOptions="Start"
+                               HorizontalOptions="Start" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0"
+                                   HeightRequest="45"
+                                   WidthRequest="45"
+                                   HorizontalOptions="Center"
+                                   Source="presionNeumaticos.png"
+                                   VerticalOptions="Center" />
+                            <telerikInput:RadEntry Text="{Binding Presion3, Mode=TwoWay}"
+                                                   WatermarkText=""
+                                                   Keyboard="Numeric"
+                                                   WidthRequest="200"
+                                                   Style="{StaticResource LoginEntryStyle}"
+                                                   Grid.Column="1" />
+                            <Label Grid.Column="2"
+                                   Text="Psi."
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center" />
+                        </Grid>
+                        <Editor Text="{Binding Presion3Observ, Mode=TwoWay}"
+                                Keyboard="Text"
+                                Placeholder="Detalle..."
+                                PlaceholderColor="DimGray"
+                                BackgroundColor="AliceBlue"
+                                HeightRequest="80">
+                        </Editor>
+                        <!-- 4 Label -->
+                        <Label FontSize="Subtitle"
+                               FontAttributes="Italic"
+                               Text="Presión Llanta Trasera Derecha"
+                               TextColor="{StaticResource ColorLabel2}"
+                               VerticalOptions="Start"
+                               HorizontalOptions="Start" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0"
+                                   HeightRequest="45"
+                                   WidthRequest="45"
+                                   HorizontalOptions="Center"
+                                   Source="presionNeumaticos.png"
+                                   VerticalOptions="Center" />
+                            <telerikInput:RadEntry Text="{Binding Presion4, Mode=TwoWay}"
+                                                   WatermarkText=""
+                                                   Keyboard="Numeric"
+                                                   WidthRequest="200"
+                                                   Style="{StaticResource LoginEntryStyle}"
+                                                   Grid.Column="1" />
+                            <Label Grid.Column="2"
+                                   Text="Psi."
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center" />
+                        </Grid>
+                        <Editor Text="{Binding Presion4Observ, Mode=TwoWay}"
+                                Keyboard="Text"
+                                Placeholder="Detalle..."
+                                PlaceholderColor="DimGray"
+                                BackgroundColor="AliceBlue"
+                                HeightRequest="80">
+                        </Editor>
+                        <!-- button -->
+                        <Button Text="Continuar"
+                                Grid.Row="13"
+                                Grid.ColumnSpan="3"
+                                CornerRadius="25"
+                                TextColor="White"
+                                BackgroundColor="#00AE0C"
+                                FontSize="Body"
+                                Command="{Binding BtnContinuar}" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

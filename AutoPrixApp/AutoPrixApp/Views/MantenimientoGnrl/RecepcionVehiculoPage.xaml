@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPrixApp.Views.MantenimientoGnrl.RecepcionVehiculoPage"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:fonts="clr-namespace:AutoPrixApp.FontsIcon;assembly=AutoPrixApp"
+             xmlns:local="clr-namespace:AutoPrixApp.ViewModels"             
+             xmlns:model="clr-namespace:AutoPrixApp.Models"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">white</Color>
+            <Style x:Key="myBodyStyle"
+                   TargetType="Label"
+                   BaseResourceKey="BodyStyle">
+                <Setter Property="TextColor"
+                        Value="Accent" />
+            </Style>            
+        </ResourceDictionary>
+        <StyleSheet Source="../../Css/StyleImage.css" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame Padding="0,0,0,0">
+                    <StackLayout BackgroundColor="{StaticResource Accent}"
+                                 VerticalOptions="FillAndExpand"
+                                 HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="FillAndExpand">
+                            <ContentView Padding="0,0,0,0"
+                                         VerticalOptions="FillAndExpand"
+                                         HorizontalOptions="FillAndExpand">
+                                <Image Source="tallerMecanico.jpg"
+                                       VerticalOptions="FillAndExpand"
+                                       HorizontalOptions="FillAndExpand"
+                                       HeightRequest="185" />
+                            </ContentView>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame BackgroundColor="Transparent"
+                       Padding="15,0,15,0"
+                       HeightRequest="135">
+                    <Grid Padding="15,0,15,15">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Datos del Vehículo"
+                               Style="{StaticResource myBodyStyle}"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               FontSize="Title" />
+
+                        <Label FontAttributes="Bold"
+                               TextColor="Black"
+                               Grid.Row="1"
+                               Grid.Column="0"
+                               Text="Cliente:">
+                        </Label>
+                        <Label FontAttributes="None"
+                               TextColor="Gray"
+                               Text="{Binding Cliente}"
+                               Grid.Row="1"
+                               Grid.Column="1">
+                        </Label>
+                        <Label FontAttributes="Bold"
+                               TextColor="Black"
+                               Grid.Row="2"
+                               Grid.Column="0"
+                               Text="Vehiculo:">
+                        </Label>
+                        <Label FontAttributes="None"
+                               TextColor="Gray"
+                               Text="{Binding Vehiculo}"
+                               Grid.Row="2"
+                               Grid.Column="1">
+                        </Label>
+                        <Label FontAttributes="Bold"
+                               TextColor="Black"
+                               Grid.Row="3"
+                               Grid.Column="0"
+                               Text="Placa:">
+                        </Label>
+                        <Label FontAttributes="None"
+                               TextColor="Gray"
+                               Text="{Binding Placa}"
+                               Grid.Row="3"
+                               Grid.Column="1">
+                        </Label>
+                    </Grid>
+                </Frame>
+                <Frame BackgroundColor="Transparent"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Padding="15,0,15,0">
+                    <Grid Padding="15,0,15,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25" />
+                            <ColumnDefinition Width="250" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Row="2"
+                               Grid.Column="0"
+                               Source="car.png"
+                               VerticalOptions="Center" />
+
+                        
+                        <telerikInput:RadEntry Text="{Binding Kilometraje, Mode=TwoWay,StringFormat='{0:N0}'}"
+                                               WatermarkText="Kilometraje"
+                                               Keyboard="Numeric"
+                                               Style="{StaticResource LoginEntryStyle}"
+                                               Grid.Row="2"
+                                               Grid.Column="1">
+                        </telerikInput:RadEntry>
+                         
+                        
+
+                        <Label Grid.Row="2"
+                               Grid.Column="2"
+                               Text="Kms."
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center" />
+                        <!-- //Forma de pago movido al ultimo
+                    <Image Grid.Row="3"
+                           Grid.Column="0"
+                           Source="money.png"
+                           VerticalOptions="Center" />
+                    
+                    <telerikInput:RadListPicker x:Name="listPicker"
+                                                Placeholder="Forma de Pago"
+                                                ItemsSource="{Binding Items}"
+                                                DisplayMemberPath="Nombre"
+                                                SelectedItem="{Binding SelectedColorName, Mode=TwoWay}"
+                                                ItemStyle="{StaticResource ItemStyle}"
+                                                SelectedItemStyle="{StaticResource SelectedItemStyle}"
+                                                PlaceholderLabelStyle="{StaticResource placeholderLabelStyle}"
+                                                IsLooping="False"
+                                                ItemLength="60"
+                                                ItemSpacing="3"
+                                                Grid.Row="3"
+                                                Grid.Column="1"
+                                                Grid.ColumnSpan="2">
+                            <telerikInput:RadListPicker.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="{Binding Nombre}"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center" />
+                                </DataTemplate>
+                            </telerikInput:RadListPicker.ItemTemplate>
+                            <telerikInput:RadListPicker.SelectorSettings>
+                            <telerikInput:PickerPopupSelectorSettings PopupViewStyle="{StaticResource popupViewStylePicker}"
+                                                                      HeaderStyle="{StaticResource headerStyle}"
+                                                                      HeaderLabelText="Formas de Pago"
+                                                                      HeaderLabelStyle="{StaticResource headerLabelStyle}"
+                                                                      FooterStyle="{StaticResource footerStyle}"
+                                                                      AcceptButtonStyle="{StaticResource acceptButtonStyle}"
+                                                                      CancelButtonStyle="{StaticResource cancelButtonStyle}" />
+                            </telerikInput:RadListPicker.SelectorSettings>
+                    </telerikInput:RadListPicker>
+-->
+                        <Label FontFamily="fontello"
+                               Text="{x:Static fonts:IcontFont.Direction}"
+                               Grid.Row="4"
+                               Grid.Column="0"
+                               VerticalOptions="Center"
+                               FontSize="Medium" />
+
+                        <Editor Text="{Binding Observacion, Mode=TwoWay}"
+                                Keyboard="Text"
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="2"
+                                Placeholder="Observación"
+                                PlaceholderColor="#2196F3"
+                                BackgroundColor="AliceBlue"
+                                HeightRequest="150"
+                                AutoSize="TextChanges">
+                        </Editor>
+                    </Grid>
+                </Frame>
+                <Grid HorizontalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Carga de Imagenes"
+                           FontSize="Body"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           TextColor="Gray"
+                           Grid.Row="0"
+                           Grid.Column="0">
+                    </Label>
+                    <Button x:Name="TakePhoto"
+                            Text="Capturar"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            CornerRadius="15"
+                            Command="{Binding BtnCamera}">
+                        <Button.ImageSource>
+                            <OnPlatform x:TypeArguments="ImageSource">
+                                <On Platform="iOS, Android"
+                                    Value="camera.png" />
+                            </OnPlatform>
+                        </Button.ImageSource>
+                    </Button>
+                </Grid>
+                <Frame BackgroundColor="Transparent">
+                    <ScrollView>
+                        <Grid>
+                            <ScrollView>
+                                <FlexLayout x:Name="flexLayout"
+                                            Wrap="Wrap"
+                                            JustifyContent="SpaceAround"
+                                            BindableLayout.ItemsSource="{Binding ListaImagenes}">
+
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+
+                                            <StackLayout StyleClass="photo"
+                                                         x:DataType="model:Imagen">
+                                                <Image Source="{Binding UrlSource}"
+                                                       Aspect="AspectFill"
+                                                       StyleClass="photo">
+                                                </Image>
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                                          Command="{Binding Source={RelativeSource AncestorType={x:Type local:RecepcionVehiculoViewModel}}, Path=ItemTapped}"
+                                                                          CommandParameter="{Binding .}">
+                                                    </TapGestureRecognizer>
+                                                </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+
+                                </FlexLayout>
+                            </ScrollView>
+
+                            <ActivityIndicator x:Name="activityIndicator"
+                                               IsRunning="{Binding IsBusy}"
+                                               VerticalOptions="Center" />
+
+                        </Grid>
+
+
+                    </ScrollView>
+
+                </Frame>
+                
+                <Button Text="Continuar"
+                        Grid.Row="5"
+                        Grid.ColumnSpan="3"
+                        CornerRadius="25"
+                        TextColor="White"
+                        BackgroundColor="#00AE0C"
+                        FontSize="Body"
+                        Command="{Binding BtnContinuar}" />
+            </StackLayout>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

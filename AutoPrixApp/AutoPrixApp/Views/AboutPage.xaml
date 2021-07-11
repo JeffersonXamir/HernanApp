@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPrixApp.Views.AboutPage"
+             xmlns:vm="clr-namespace:AutoPrixApp.ViewModels" 
+             xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             Title="{Binding Title}">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#0D47A1</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0.5" />
+        </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                    <Image Source="IconHernan3.png" VerticalOptions="Center" HeightRequest="74" />
+
+                </ContentView>
+            </StackLayout>
+        </StackLayout>
+        <ScrollView Grid.Row="1">
+            <StackLayout  Orientation="Vertical" Padding="0,0,0,0" Spacing="1">
+                <Label Style="{StaticResource TitleMainStyle}" Text="Misión" FontSize="Title"/>
+                    <Label Style="{StaticResource NormalBlackLabelStyle}" Text="Nuestra empresa está asociada a la Confederación Nacional De Talleres Automotrices ( CNTA-Ecuador) en capacitación constante con el fin de brindarle a nuestros clientes la satisfacción total de un trabajo altamente calificado." FontSize="16" Padding="0,0,0,0"/>
+
+            </StackLayout>
+        </ScrollView>
+        
+        <!--  Here will be CarouselView  -->
+        <ContentView Grid.Row="2">
+            <controls:CarouselViewControl ItemsSource="{Binding Slides}"
+                                        ShowIndicators="True"
+                                        ShowArrows="False"
+                                        IndicatorsTintColor="{StaticResource DarkGray}"
+                                        CurrentPageIndicatorTintColor="{StaticResource Primary}">
+                <controls:CarouselViewControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <ContentView Grid.Row="0" Padding="60,30,60,0">
+                                <Image Source="{Binding Image}" Aspect="AspectFit" />
+                            </ContentView>
+
+                            <ContentView Grid.Row="1" Padding="20,10,20,50">
+                                <Label Text="{Binding Description}"
+                                    Style="{StaticResource NormalBlackLabelStyle}"
+                                    HorizontalTextAlignment="Center" />
+                            </ContentView>
+
+                        </Grid>
+                    </DataTemplate>
+                </controls:CarouselViewControl.ItemTemplate>
+            </controls:CarouselViewControl>
+        </ContentView>
+
+        <!--  Separator  -->
+        <BoxView Grid.Row="3" BackgroundColor="{StaticResource Gray}" />
+    </Grid>
+    </ScrollView>
+</ContentPage>
