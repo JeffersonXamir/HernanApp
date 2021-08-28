@@ -135,7 +135,7 @@
     <FlyoutItem Title="Mis Ordenes"
                 x:Name="ServicioOrdenesClientes"
                 Icon="list.png">
-        <ShellContent Title="Mis Ordenes"
+        <ShellContent Title="Mis Ordenes" 
                       Route="ServicioOrdenesClientes"
                       x:Name="OrdenesClientes"
                       ContentTemplate="{DataTemplate vmOrdenes:OrdenesClientes}">
