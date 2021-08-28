@@ -42,6 +42,7 @@ namespace AutoPrixApp.ViewModels
             Title = Int64.Parse(Preferences.Get("IdRol", 0l).ToString()) == 0 ? "" : "REGISTRO DE EMPLEADO";
             TexBtnRegistrar = Int64.Parse(Preferences.Get("IdRol",0l).ToString()) == 0 ? "REGISTRARSE" : "REGISTRAR";
             IsBusy = Int64.Parse(Preferences.Get("IdRol",0l).ToString()) == 0 ? true : false;
+            UserDialogs.Instance.HideLoading();
         }
 
         private void OnAccept(object obj)

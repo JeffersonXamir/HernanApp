@@ -39,7 +39,7 @@ namespace AutoPrixApp
                     else if (rol == 3)
                     {//CLIENTE
                         MainPage = new AppShellCliente();//EN DESARROLLO
-                        Preferences.Clear();
+                        //Preferences.Clear();
                     }
 
                 }

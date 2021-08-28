@@ -19,5 +19,15 @@ namespace AutoPrixWebApi.Entidades
         public Int64 UsuarioModifica { get; set; }
         public DateTime FechaModifica { get; set; }
 
+
+        /*se agregan nuevos campos*/
+        public string Placa { get; set; }
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
+
+        /*para presentacion*/
+        public string OrdenNum { get; set; }
+        public string FechaOrden { get; set; }
+        public string Estado { get; set; }
     }
 }

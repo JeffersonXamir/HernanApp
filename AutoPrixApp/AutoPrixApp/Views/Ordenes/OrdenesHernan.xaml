@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPrixApp.Views.Ordenes.OrdenesHernan"
+             xmlns:local="clr-namespace:AutoPrixApp.ViewModels"  
+             xmlns:model="clr-namespace:AutoPrixApp.Models" 
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">white</Color>
+            <Style x:Key="myBodyStyle" TargetType="Label"
+                   BaseResourceKey="BodyStyle">
+                <Setter Property="TextColor" Value="Accent" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Padding="5,5,5,5">
+            <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ContentView Padding="5,5,5,5" VerticalOptions="FillAndExpand">
+                        <Image Source="IconHernan3.png" VerticalOptions="FillAndExpand" HeightRequest="50" />
+                    </ContentView>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout  Orientation="Vertical" Padding="0,0,0,0" Spacing="0">
+                <Label Style="{StaticResource TitleMainStyle}" Text="Ordenes de Reparación" FontSize="Title"/>
+            </StackLayout>
+
+            <Frame Padding="1,1,1,1">
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Entry Grid.Row="0" Grid.ColumnSpan="3" Placeholder="Nombres o cedula..." Text="{Binding TxtBuscar}" />
+
+                    <Grid Grid.Row="1"
+                          Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Inicio: " VerticalOptions="Center"></Label>
+                        <DatePicker MinimumDate="01/01/2000"
+                                MaximumDate="{Binding DateMaximum,Mode=TwoWay}"
+                                Date="{Binding SelectedDate,Mode=TwoWay}" Format="dd/MM/yyyy" 
+                                Grid.Row="0"
+                                Grid.Column="1"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1"
+                          Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="   Fin: " VerticalOptions="Center"></Label>
+                        <DatePicker MinimumDate="01/01/2000"
+                                MaximumDate="{Binding DateMaximum,Mode=TwoWay}"
+                                Date="{Binding SelectedDateEnd,Mode=TwoWay}" Format="dd/MM/yyyy"
+                                Grid.Row="0"
+                                Grid.Column="1"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1" Grid.Column="2">
+                        <Button ImageSource="Search.png" 
+                                BorderColor="Black" 
+                                BackgroundColor="Transparent"
+                                Scale="1"
+                                Command="{Binding BtnBuscar}"> </Button>
+                    </Grid>
+                </Grid>
+                
+            </Frame>
+
+            <!--<RefreshView  RefreshColor="#2374FF"  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">-->
+            <ListView x:Name="LsOrdenes" IsPullToRefreshEnabled="False" RefreshControlColor="Blue"
+                          ItemsSource="{Binding ItemsOrden}"  CachingStrategy="RecycleElement" HasUnevenRows="True"
+                          SelectionMode="Single" SelectedItem="{Binding OrdenSeleccionado, Mode=TwoWay}"  >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="70"> <!--  Add this -->
+                            <StackLayout HeightRequest="70">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Row="0"
+                                          Grid.Column="0">
+                                        <Label Grid.Column="0" Text="{Binding OrdenNum}" FontSize="15" FontAttributes="Bold" TextColor="#81D4FA"/>
+                                    </Grid>
+                                    <Grid Grid.Row="0"
+                                          Grid.Column="1">
+                                        <Label Grid.Column="0" Text="{Binding Placa}" />
+                                    </Grid>
+                                    <Grid Grid.Row="0"
+                                          Grid.Column="2">
+                                        <Label Grid.Column="0" Text="{Binding FechaOrden}" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="1"
+                                          Grid.Column="0">
+                                        <Label Grid.Column="0" Grid.ColumnSpan="3"  HorizontalOptions="Start" Text="{Binding Observacion}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="1"
+                                          Grid.Column="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Column="0" HorizontalOptions="Start" Text="{Binding Estado}" LineBreakMode="NoWrap"  FontSize="13" TextColor="Black" FontAttributes="Bold" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="0" Grid.Column="3">
+                                        <Image HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Source="derecha.png" />
+                                    </Grid>
+
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            <!-- </RefreshView>-->
+            
+
+        </StackLayout>
+       
+    </ContentPage.Content>
+</ContentPage>

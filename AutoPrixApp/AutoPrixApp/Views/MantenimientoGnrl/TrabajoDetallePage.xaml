@@ -136,7 +136,7 @@
                                                HorizontalOptions="StartAndExpand" />
 
                                         <Editor Text="{Binding CVC, Mode=TwoWay}"
-                                                Keyboard="Text"
+                                                Keyboard="Chat"
                                                 Grid.Row="1"
                                                 Grid.Column="0"
                                                 Grid.ColumnSpan="2"
@@ -153,7 +153,8 @@
                         </CollectionView.ItemTemplate>
                     </CollectionView>
                 </Frame>
-                <Frame BorderColor="Transparent" > <!-- Posi empieza pagos -->
+                <!-- Posi empieza pagos 
+                <Frame BorderColor="Transparent" > 
                     <StackLayout >
                         <Label Text="¿Como se realizara el pago?"
                                FontAttributes="Bold"
@@ -212,7 +213,7 @@
                         </telerikInput:RadListPicker>
                         </Grid>
                     </StackLayout>
-                </Frame>
+                </Frame>-->
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />

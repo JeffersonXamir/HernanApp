@@ -82,7 +82,8 @@ namespace AutoPrixApp.ViewModels
 
         public async Task GetVehiculosClientes(string cedula)
         {
-
+            Items.Clear();
+            if (cedula == null || cedula.Equals("")) { return; }
             List<VehiculosClientes> lista = new List<VehiculosClientes>();
             try
             {

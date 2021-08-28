@@ -90,6 +90,7 @@
 
                         <telerikInput:RadEntry Text="{Binding Email, Mode=TwoWay}"
                                    WatermarkText="Email"
+                                   Keyboard="Email"
                                    Style="{StaticResource LoginEntryStyle}" />
 
                         <telerikInput:RadEntry Text="{Binding Usuario, Mode=TwoWay}"

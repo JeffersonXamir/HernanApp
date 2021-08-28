@@ -158,10 +158,14 @@
     <Compile Include="Controllers\FormaPagoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImagenesController.cs" />
+    <Compile Include="Controllers\OrdenesDetallesClientesController.cs" />
     <Compile Include="Controllers\TrabajosController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\OrdenesClientesController.cs" />
     <Compile Include="Controllers\VehiculosClientesController.cs" />
+    <Compile Include="DataAccess\BPOrdenesDetalles.cs" />
+    <Compile Include="DataAccess\BPOrdenes.cs" />
     <Compile Include="DataAccess\BPFormaPagos.cs" />
     <Compile Include="DataAccess\BPImagenes.cs" />
     <Compile Include="DataAccess\BPTrabajos.cs" />
@@ -171,9 +175,11 @@
     <Compile Include="Entidades\FormaPago.cs" />
     <Compile Include="Entidades\GuardarTrabajo.cs" />
     <Compile Include="Entidades\ImagenTrabajos.cs" />
+    <Compile Include="Entidades\Modelo.cs" />
     <Compile Include="Entidades\OrdenTrabajoCab.cs" />
     <Compile Include="Entidades\OrdenTrabajoDet.cs" />
     <Compile Include="Entidades\OrdenTrabajoLlantas.cs" />
+    <Compile Include="Entidades\Marca.cs" />
     <Compile Include="Entidades\Trabajos.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\UsuarioEnte.cs" />

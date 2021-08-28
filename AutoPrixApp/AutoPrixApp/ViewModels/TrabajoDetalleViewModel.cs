@@ -321,7 +321,8 @@ namespace AutoPrixApp.ViewModels
                 }
 
                 if (lsdetalles.Count <= 0) {  throw new Exception("Seleccione un trabajo a realizar"); }
-                if (SelectedCity == null || SelectedCity.IdFormaPago <= 0) {  throw new Exception("Seleccione una forma de pago"); }
+                Obj.idFormaPago = 1; //se comenta forma de pago y se setea por default 1 contado.
+                //if (SelectedCity == null || SelectedCity.IdFormaPago <= 0) {  throw new Exception("Seleccione una forma de pago"); }
 
             }
             catch (Exception e)

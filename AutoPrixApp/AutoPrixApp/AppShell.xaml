@@ -6,6 +6,7 @@
        xmlns:vmMantenimientoGrnl="clr-namespace:AutoPrixApp.Views.MantenimientoGnrl"
        xmlns:vmMantenimientoMC="clr-namespace:AutoPrixApp.Views.MantenimientoMontacarga"
        xmlns:vmPreventivos="clr-namespace:AutoPrixApp.Views.Preventivos"
+       xmlns:vmOrdenes="clr-namespace:AutoPrixApp.Views.Ordenes"
        Title="AutoPrixApp"
        x:Class="AutoPrixApp.AppShell"
        Shell.FlyoutBehavior="Flyout">
@@ -141,6 +142,16 @@
                       Route="ServicioMantenimientoMC"
                       x:Name="MantenimientoMC"
                       ContentTemplate="{DataTemplate vmMantenimientoMC:MantenimientoMCPage}">
+        </ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Ordenes Clientes"
+                x:Name="ServicioOrdenCliente"
+                Icon="list.png">
+        <ShellContent Title="Ordenes Clientes"
+                      Route="OrdenClientes"
+                      x:Name="ManteniminentoOrdenCliente"
+                      ContentTemplate="{DataTemplate vmOrdenes:OrdenesHernan}">
         </ShellContent>
     </FlyoutItem>
 

@@ -93,7 +93,9 @@ namespace AutoPrixApp.ViewModels
         #region Funciones definition
         public async Task GetVehiculosClientes(string cedula)
         {
-            
+            //cedula = (cedula == null || cedula == "" ? "" : cedula);
+            Items.Clear();
+            if (cedula == null || cedula.Equals("")) { return; }
             List<VehiculosClientes> lista = new List<VehiculosClientes>();
             try
             {

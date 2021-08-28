@@ -1,5 +1,6 @@
 ﻿using AutoPrixWebApi.Entidades;
 using AutoPrixWebApi.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,7 +12,7 @@ namespace AutoPrixWebApi.DataAccess
 {
     public class BPUsuario
     {
-        public List<object> ObtenerUsuariosApi(string tarjetas)
+        public List<object> ObtenerUsuariosApi(JObject cadena)
         {
             DataSet ds = new DataSet();
             List<object> ens = new List<object>();
@@ -37,6 +38,10 @@ namespace AutoPrixWebApi.DataAccess
                 ens = ServicioTransporte.ConvertDataTable<object>(dt);
                 */
                 //DataTable table = new DataTable();
+                JObject json_object = cadena;
+                string modo; Int64 idusuario;
+                idusuario = json_object["idUsuario"] == null ? 0 : Int64.Parse(json_object["idUsuario"].ToString());
+                modo = json_object["modo"] == null ? "E" : (string)json_object["modo"];
 
                 using (SqlConnection sql = new SqlConnection(conection))
                 {
@@ -45,7 +50,8 @@ namespace AutoPrixWebApi.DataAccess
                     {
 
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add(new SqlParameter("@IdUsuario1", 1));
+                        cmd.Parameters.Add(new SqlParameter("@IdUsuario1", idusuario));
+                        cmd.Parameters.Add(new SqlParameter("@modo", modo));
 
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
                         sql.Open();

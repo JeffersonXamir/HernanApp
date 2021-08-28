@@ -127,11 +127,12 @@
                                Source="car.png"
                                VerticalOptions="Center" />
 
-                        
-                        <telerikInput:RadEntry Text="{Binding Kilometraje, Mode=TwoWay,StringFormat='{0:N0}'}"
+
+                        <telerikInput:RadEntry Text="{Binding Kilometraje, Mode=TwoWay}"
                                                WatermarkText="Kilometraje"
                                                Keyboard="Numeric"
                                                Style="{StaticResource LoginEntryStyle}"
+                                               
                                                Grid.Row="2"
                                                Grid.Column="1">
                         </telerikInput:RadEntry>
@@ -140,6 +141,7 @@
 
                         <Label Grid.Row="2"
                                Grid.Column="2"
+                               Grid.ColumnSpan="3"
                                Text="Kms."
                                VerticalOptions="Center"
                                HorizontalOptions="Center" />

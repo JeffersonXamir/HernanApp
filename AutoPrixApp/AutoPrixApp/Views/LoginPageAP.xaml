@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
              xmlns:local="clr-namespace:AutoPrixApp.Models"
@@ -52,7 +51,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                                     Command="{Binding GoToViewCommand}"
                                     CommandParameter="{x:Static local:ViewType.PasswordResetView}"
                                     Style="{StaticResource SecondaryActionButtonStyle}"
-                                    FontAttributes="None" /> -->
+                                    FontAttributes="None" /> 
             <telerikPrimitives:RadBusyIndicator x:Name="BusyIndicator"
                                        AnimationType="Animation8"
                                        AnimationContentColor="#2374FF"
@@ -65,7 +64,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                            VerticalOptions="Center" 
                            TextColor="#2374FF"/>
                 </telerikPrimitives:RadBusyIndicator.BusyContent>
-            </telerikPrimitives:RadBusyIndicator>
+            </telerikPrimitives:RadBusyIndicator> -->
         </StackLayout>
         
         <Grid Grid.Row="2">

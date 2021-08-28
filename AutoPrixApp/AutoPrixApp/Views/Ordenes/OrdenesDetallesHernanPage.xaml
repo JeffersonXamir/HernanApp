@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPrixApp.Views.Ordenes.OrdenesDetallesHernanPage"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:fonts="clr-namespace:AutoPrixApp.FontsIcon;assembly=AutoPrixApp"
+             xmlns:local="clr-namespace:AutoPrixApp.ViewModels"             
+             xmlns:model="clr-namespace:AutoPrixApp.Models"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">white</Color>
+            <Style x:Key="myBodyStyle"
+                   TargetType="Label"
+                   BaseResourceKey="BodyStyle">
+                <Setter Property="TextColor"
+                        Value="Accent" />
+            </Style>            
+        </ResourceDictionary>
+        <StyleSheet Source="../../Css/StyleImage.css" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="5,5,5,5">
+                <Grid>
+                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding IdOrden, Mode=OneWay}" FontSize="30" FontAttributes="Bold" TextColor="Blue" ></Label>
+                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding FechaOrden, Mode=OneWay}" TextColor="Black" FontSize="15" VerticalOptions="Center" HorizontalOptions="End"></Label>
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Marca,StringFormat='Marca: {0}'}" TextColor="Black" FontSize="15" VerticalOptions="Center" ></Label>
+                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding Modelo,StringFormat='Modelo: {0}'}" TextColor="Black" FontSize="15" VerticalOptions="Center" ></Label>
+
+                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding Placa,StringFormat='Placa: {0}'}" TextColor="Black" FontSize="15" VerticalOptions="Center" ></Label>
+                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding Estado,StringFormat='Estado: {0}'}" TextColor="Blue" FontSize="16" VerticalOptions="Center" ></Label>
+                </Grid>
+                <Grid>
+                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Observacion,StringFormat='Observación: {0}'}" TextColor="Black" FontSize="16" VerticalOptions="Center" ></Label>
+                </Grid>
+
+                <Grid>
+                    <Label Grid.Row="0" Grid.Column="0" Text="Estados Llantas" FontSize="20" FontAttributes="Bold" TextColor="DarkCyan" ></Label>
+                </Grid>
+
+                <StackLayout HeightRequest="200">
+                    <ListView x:Name="LsLlantas" IsPullToRefreshEnabled="False" RefreshControlColor="Blue"
+                          ItemsSource="{Binding OrdenDetLlantas}"  CachingStrategy="RecycleElement" HasUnevenRows="True"
+                          SelectionMode="None"   >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell Height="50">
+                                    <StackLayout HeightRequest="50">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="220" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding CodPosicion}" FontSize="16" FontAttributes="Italic" TextColor="Coral" ></Label>
+                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Presion,StringFormat='{0} Lb.'}" FontSize="16" FontAttributes="Italic" TextColor="Black" ></Label>
+                                        </Grid>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Observacion}" FontSize="16" FontAttributes="None" TextColor="Black" ></Label>
+                                        </Grid>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+                <Grid>
+                    <Label Grid.Row="0" Grid.Column="0" Text="Trabajos Realizados" FontSize="20" FontAttributes="Bold" TextColor="DarkCyan" ></Label>
+                </Grid>
+
+                <StackLayout HeightRequest="230">
+                    <ListView x:Name="LsDetalles" IsPullToRefreshEnabled="False" RefreshControlColor="Blue"
+                          ItemsSource="{Binding OrdenDet}"  CachingStrategy="RecycleElement" HasUnevenRows="True"
+                          SelectionMode="None"   >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell Height="50">
+                                    <StackLayout HeightRequest="50">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Trabajo}" FontSize="16" FontAttributes="Bold" TextColor="Blue" ></Label>
+                                            
+                                        </Grid>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Detalle}" FontSize="16" FontAttributes="None" TextColor="Black" ></Label>
+                                        </Grid>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Row="0"
+                            ImageSource="list.png"
+                            Padding="115,0,110,0"
+                            Text="Aprobar Orden"
+                            IsVisible="{Binding VisibleApruebaOrden}"
+                            Command="{Binding BtnApruebaOrden}"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            TextColor="Black"
+                            BackgroundColor="#EOEOEO"
+                            FontSize="Body"
+                             />
+                    <Button Grid.Row="1"
+                            ImageSource="list.png"
+                            Padding="115,0,110,0"
+                            Text="Finalizar Orden"
+                            IsVisible="{Binding VisibleFinalizaOrden}"
+                            Command="{Binding BtnFinalizaOrden}"
+                            HorizontalOptions="FillAndExpand"
+                            TextColor="Black"
+                            BackgroundColor="#FF8A65"
+                            FontSize="Body"
+                             />
+                    
+                    <Button Grid.Row="2"
+                            ImageSource="camera.png"
+                            Padding="115,0,110,0"
+                            Text="Ver Ingreso"
+                            HorizontalOptions="FillAndExpand"
+                            TextColor="White"
+                            IsVisible="{Binding VisibleIngresoOrden}"
+                            Command="{Binding BtnIngresoOrden}"
+                            BackgroundColor="#2374FF"
+                            FontSize="Body"
+                             />
+                    <Button Grid.Row="3"
+                            ImageSource="camera.png"
+                            Padding="115,0,110,0"
+                            Text="Ver Salida"
+                            IsVisible="{Binding VisibleSalidaOrden}"
+                            Command="{Binding BtnSalidaOrden}"
+                            HorizontalOptions="FillAndExpand"
+                            TextColor="White"
+                            BackgroundColor="#2374FF"
+                            FontSize="Body"
+                             />
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

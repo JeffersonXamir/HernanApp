@@ -1,5 +1,6 @@
 ﻿using AutoPrixWebApi.Entidades;
 using AutoPrixWebApi.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,40 @@ namespace AutoPrixWebApi.Controllers
                 json.MENSAJE = "Ok";
                 json.STACK = ens;
                 json.RESULTADO = null;
+            }
+            catch (Exception ex)
+            {
+                json.MENSAJE = "Error";
+                json.STACK = ex.Message;
+                json.RESULTADO = null;
+                return Request.CreateResponse(HttpStatusCode.BadRequest, json);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, json);
+        }
+
+        // POST: api/Imagenes
+        [HttpPost]
+        [Route("api/imagenes/PostObtenerImagenes")]
+        public HttpResponseMessage PostObtenerImagenes(JObject obj)
+        {
+
+            jsonResult json = new jsonResult();
+            try
+            {
+                //validar parametros 
+
+                if (obj.Equals(null))
+                {
+                    throw new Exception("Campos necesarios");
+                }
+
+                DataAccess.BPImagenes bp = new DataAccess.BPImagenes();
+                List<object> ens = bp.ObtenerImagenApi(obj);
+
+                json.MENSAJE = "Ok";
+                json.STACK = "";
+                json.RESULTADO = ens;
             }
             catch (Exception ex)
             {

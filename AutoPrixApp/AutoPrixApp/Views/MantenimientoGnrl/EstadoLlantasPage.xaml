@@ -75,7 +75,7 @@
                                                    Grid.Column="1" />
                             <Label 
                                    Grid.Column="2"
-                                   Text="Psi."
+                                   Text="Lb."
                                    VerticalOptions="Center"
                                    HorizontalOptions="Center" />
                         </Grid>
@@ -113,7 +113,7 @@
                                                    Style="{StaticResource LoginEntryStyle}"
                                                    Grid.Column="1" />
                             <Label Grid.Column="2"
-                                   Text="Psi."
+                                   Text="Lb."
                                    VerticalOptions="Center"
                                    HorizontalOptions="Center" />
                         </Grid>
@@ -151,7 +151,7 @@
                                                    Style="{StaticResource LoginEntryStyle}"
                                                    Grid.Column="1" />
                             <Label Grid.Column="2"
-                                   Text="Psi."
+                                   Text="Lb."
                                    VerticalOptions="Center"
                                    HorizontalOptions="Center" />
                         </Grid>
@@ -189,7 +189,7 @@
                                                    Style="{StaticResource LoginEntryStyle}"
                                                    Grid.Column="1" />
                             <Label Grid.Column="2"
-                                   Text="Psi."
+                                   Text="Lb."
                                    VerticalOptions="Center"
                                    HorizontalOptions="Center" />
                         </Grid>

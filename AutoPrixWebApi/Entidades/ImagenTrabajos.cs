@@ -17,7 +17,7 @@ namespace AutoPrixWebApi.Entidades
         public DateTime FechaCreacion { get; set; }
         public Int64 UsuarioModifica { get; set; }
         public DateTime FechaModifica { get; set; }
-        
-        public byte[] ImageData { get; set; }
+
+        public byte[] SourceImage { get; set; }
     }
 }

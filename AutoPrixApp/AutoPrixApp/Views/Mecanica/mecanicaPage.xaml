@@ -18,26 +18,11 @@ xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Xa
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout.Padding>
-                <OnPlatform x:TypeArguments="Thickness">
-                    <On Platform="Android"
-                        Value="20,10,20,30" />
-                    <On Platform="ios"
-                        Value="20,40,20,60" />
-                </OnPlatform>
-            </StackLayout.Padding>
-            <StackLayout BackgroundColor="{StaticResource Accent}"
-                         VerticalOptions="FillAndExpand"
-                         HorizontalOptions="Fill">
-                <StackLayout Orientation="Horizontal"
-                             HorizontalOptions="Center"
-                             VerticalOptions="Center">
-                    <ContentView Padding="0,0,0,0"
-                                 VerticalOptions="FillAndExpand">
-                        <Image Source="logo1White.png"
-                               VerticalOptions="FillAndExpand"
-                               HeightRequest="100" />
+        <StackLayout Padding="5,5,5,5">
+            <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ContentView Padding="5,5,5,5" VerticalOptions="FillAndExpand">
+                        <Image Source="IconHernan3.png" VerticalOptions="FillAndExpand" HeightRequest="50" />
                     </ContentView>
                 </StackLayout>
             </StackLayout>
@@ -50,12 +35,12 @@ xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Xa
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <SearchBar x:Name="txtSearch"
-                               Placeholder="cedula.."
+                               Placeholder="cedula o placa..."
                                FontSize="Subtitle"
                                HorizontalOptions="FillAndExpand"
                                SearchCommand="{Binding PerformSearch}"
                                SearchCommandParameter="{Binding Text, Source={x:Reference txtSearch}}"
-                               Keyboard="Numeric">
+                               Keyboard="Text">
                     </SearchBar>
                 </Grid>
             </Frame>

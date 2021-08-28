@@ -18,6 +18,7 @@
     <PackageReference Include="CarouselView.FormsPlugin" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="PCLAppConfig" Version="1.0.1" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.12" />
     <PackageReference Include="SkiaSharp" Version="1.68.0" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
@@ -27,8 +28,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Telerik.Xamarin.Android.Primitives">
+      <HintPath>..\..\LibreriasTerceros\Telerik.Xamarin.Android.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.XamarinForms.Common">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2020\Binaries\Portable\Telerik.XamarinForms.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.DataControls">
+      <HintPath>..\..\LibreriasTerceros\Telerik.XamarinForms.DataControls.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Input">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2020\Binaries\Portable\Telerik.XamarinForms.Input.dll</HintPath>
@@ -75,11 +82,41 @@
     <EmbeddedResource Update="Views\Mecanica\mecanicaPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popup\PopupAprobarOrdenView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Preventivos\PreventivosPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\RegistroUsuarioPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Ordenes\OrdenesHernan.xaml.cs">
+      <DependentUpon>OrdenesHernan.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Ordenes\OrdenesClientes.xaml.cs">
+      <DependentUpon>OrdenesClientes.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Ordenes\OrdenesDetallesHernanPage.xaml.cs">
+      <DependentUpon>OrdenesDetallesHernanPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Ordenes\OrdenesDetallesClientesPage.xaml.cs">
+      <DependentUpon>OrdenesDetallesClientesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Ordenes\FinalizaOrdenPage.xaml.cs">
+      <DependentUpon>FinalizaOrdenPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Popup\PopupVerIngresoVehiculoView.xaml.cs">
+      <DependentUpon>PopupVerIngresoVehiculoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Vehiculos\MantenimientoVehiculos.xaml.cs">
+      <DependentUpon>MantenimientoVehiculos.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Vehiculos\AgregarVehiculoPage.xaml.cs">
+      <DependentUpon>AgregarVehiculoPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

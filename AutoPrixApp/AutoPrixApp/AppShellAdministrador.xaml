@@ -7,6 +7,7 @@
        xmlns:vmMantenimientoGrnl="clr-namespace:AutoPrixApp.Views.MantenimientoGnrl"
        xmlns:vmMantenimientoMC="clr-namespace:AutoPrixApp.Views.MantenimientoMontacarga"
        xmlns:vmPreventivos="clr-namespace:AutoPrixApp.Views.Preventivos"
+       xmlns:vmOrdenes="clr-namespace:AutoPrixApp.Views.Ordenes"
        Shell.FlyoutBehavior="Flyout">
     
     <Shell.Resources>
@@ -142,6 +143,16 @@
         </ShellContent>
     </FlyoutItem>
 
+    <FlyoutItem Title="Ordenes Solicitados"
+                x:Name="ServicioOrdenSolicitado1"
+                Icon="list.png">
+        <ShellContent Title="Ordenes Solicitados"
+                      Route="OrdenesAdmin"
+                      x:Name="OrdenSolicitadoAdm"
+                      ContentTemplate="{DataTemplate vmOrdenes:OrdenesHernan}">
+        </ShellContent>
+    </FlyoutItem>
+    
     <FlyoutItem Title="Registrar Empleado"
                 x:Name="ServicioRegistroEmpleado"
                 Icon="account.png">

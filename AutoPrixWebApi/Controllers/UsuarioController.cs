@@ -1,5 +1,6 @@
 ﻿using AutoPrixWebApi.Entidades;
 using AutoPrixWebApi.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,29 +12,7 @@ namespace AutoPrixWebApi.Controllers
 {
     public class UsuarioController : ApiController
     {
-        // GET: api/Usuario
-        public HttpResponseMessage Get()
-        {
-            jsonResult json = new jsonResult();
-            try
-            {
-                DataAccess.BPUsuario bp = new DataAccess.BPUsuario();
-                List<object> ens = bp.ObtenerUsuariosApi("");
-
-                json.MENSAJE = "Ok";
-                json.STACK = "";
-                json.RESULTADO = ens;
-            }
-            catch (Exception ex)
-            {
-                json.MENSAJE = "Error";
-                json.STACK = ex.Message;
-                json.RESULTADO = null;
-                return Request.CreateResponse(HttpStatusCode.NotFound, json);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.OK, json);
-        }
+        
 
         // GET: api/Usuario/5
         [HttpGet]
@@ -112,6 +91,32 @@ namespace AutoPrixWebApi.Controllers
                 json.STACK = ex.Message;
                 json.RESULTADO = null;
                 return Request.CreateResponse(HttpStatusCode.BadRequest, json);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, json);
+        }
+
+        // POST: api/Usuario
+        [HttpPost]
+        [Route("api/usuario/PostUsuariosRoles")]
+        public HttpResponseMessage PostUsuariosRoles(JObject cadena)
+        {
+            jsonResult json = new jsonResult();
+            try
+            {
+                DataAccess.BPUsuario bp = new DataAccess.BPUsuario();
+                List<object> ens = bp.ObtenerUsuariosApi(cadena);
+
+                json.MENSAJE = "Ok";
+                json.STACK = "";
+                json.RESULTADO = ens;
+            }
+            catch (Exception ex)
+            {
+                json.MENSAJE = "Error";
+                json.STACK = ex.Message;
+                json.RESULTADO = null;
+                return Request.CreateResponse(HttpStatusCode.NotFound, json);
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, json);

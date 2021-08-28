@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPrixApp.Views.Vehiculos.AgregarVehiculoPage"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:fonts="clr-namespace:AutoPrixApp.FontsIcon;assembly=AutoPrixApp"
+             xmlns:local="clr-namespace:AutoPrixApp.ViewModels"             
+             xmlns:model="clr-namespace:AutoPrixApp.Models"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">white</Color>
+            <Style x:Key="myBodyStyle"
+                   TargetType="Label"
+                   BaseResourceKey="BodyStyle">
+                <Setter Property="TextColor"
+                        Value="Accent" />
+            </Style>
+        </ResourceDictionary>
+        <StyleSheet Source="../../Css/StyleImage.css" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="2,2,2,2">
+                <StackLayout BackgroundColor="{StaticResource Accent}" >
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                        <ContentView Padding="5,5,5,5" VerticalOptions="FillAndExpand">
+                            <Image Source="IconHernan3.png" VerticalOptions="FillAndExpand" HeightRequest="60" />
+                        </ContentView>
+                    </StackLayout>
+                </StackLayout>
+
+                <Grid>
+                    <Label Grid.Row="0" Grid.Column="0" Text="Creación de Vehiculo" FontSize="20" FontAttributes="Bold" TextColor="DarkCyan" ></Label>
+                </Grid>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Text="Marca: " FontSize="16" FontAttributes="Bold" TextColor="blue" VerticalTextAlignment="Center"></Label>
+                    <telerikInput:RadComboBox
+                            Grid.Row="0" Grid.Column="1"
+                            IsEditable="True"
+                            IsClearButtonVisible="True"
+                            ItemsSource="{Binding ItemsMarca}"
+                            DisplayMemberPath="Descripcion"
+                            SearchTextPath="Descripcion"
+                            SelectedItem ="{Binding MarcaSeleccionada, Mode=TwoWay}"
+                            >
+                    </telerikInput:RadComboBox>
+
+                    <Label Grid.Row="1" Grid.Column="0" Text="Modelo: " FontSize="16" FontAttributes="Bold" TextColor="blue" VerticalTextAlignment="Center"></Label>
+                    <telerikInput:RadComboBox
+                            Grid.Row="1" Grid.Column="1"
+                            IsEditable="True"
+                            IsClearButtonVisible="True"
+                            ItemsSource="{Binding ItemsModelo}"
+                            DisplayMemberPath="Descripcion"
+                            SearchTextPath="Descripcion"
+                            SelectedItem ="{Binding ModeloSeleccionado, Mode=TwoWay}">
+                        
+                    </telerikInput:RadComboBox>
+
+                    <Label Grid.Row="2" Grid.Column="0" Text="Placa: " FontSize="16" FontAttributes="Bold" TextColor="blue" VerticalTextAlignment="Center" ></Label>
+                    <Entry Grid.Row="2" Grid.Column="1" Placeholder="ABC-9999" Text="{Binding Placa}" />
+
+                    <Label Grid.Row="3" Grid.Column="0" Text="Año: " FontSize="16" FontAttributes="Bold" TextColor="blue" VerticalTextAlignment="Center" ></Label>
+                    <Entry Grid.Row="3" Grid.Column="1" Placeholder="2099" Keyboard="Numeric" Text="{Binding Anio}"/>
+                </Grid>
+
+                <Button ImageSource="disk.png"
+                            Text="   GRABAR"
+                            HorizontalOptions="EndAndExpand"
+                            CornerRadius="10"
+                            TextColor="White"
+                            BackgroundColor="DarkGray"
+                            FontSize="Body"
+                            Command="{Binding BtnGuardar, Mode=OneWay}"
+                             />
+            </StackLayout>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

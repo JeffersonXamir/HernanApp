@@ -9,6 +9,9 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using System.ComponentModel;
+using Acr.UserDialogs;
+using System.Threading.Tasks;
+using Plugin.Connectivity;
 
 namespace AutoPrixApp.ViewModels
 {
@@ -26,8 +29,8 @@ namespace AutoPrixApp.ViewModels
             this.LoginCommand = new Command(this.ExecuteLogin);
             this.ResetPasswordCommand = new Command(this.SubmitPasswordReset);
             #if DEBUG
-                    this.username = "ADMIN_HERNAN";
-                    this.password = "CAS1001JA";
+                    this.username = "EX_WCEDEÑO";//"ADMIN_HERNAN";
+                    this.password = "2020";//"CAS1001JA";
             #endif
 
         }
@@ -96,6 +99,7 @@ namespace AutoPrixApp.ViewModels
                         break;
                     case ViewType.SignUpView:
                         //await Shell.Current.GoToAsync("RegistroUsuarioPage");
+                        UserDialogs.Instance.ShowLoading("Cargando..."); await Task.Delay(1000);
                         await Navigation.PushModalAsync(new RegistroUsuarioPage());
                         //await Shell.Current.GoToAsync(nameof(RegistroUsuarioPage));
                         break;
@@ -178,7 +182,10 @@ namespace AutoPrixApp.ViewModels
         {
             try
             {
-                /*pruebas instancia task*/
+                UserDialogs.Instance.ShowLoading("Iniciando Sesión...");
+                await Task.Delay(2000);
+                bool Conection = CrossConnectivity.Current.IsConnected;
+                if (!Conection) { await Application.Current.MainPage.DisplayAlert("Automotriz Hernan", "Error de Conectividad..", "Aceptar"); return; }
                 Usuario usu = new Usuario();
                 usu.Login = Username;
                 usu.Pass = Encrypt.GetSHA256(Password);
@@ -226,8 +233,9 @@ namespace AutoPrixApp.ViewModels
                     }
                     else if (rol == 3)
                     {//CLIENTE
-                        Preferences.Clear();
+                        //Preferences.Clear();
                         Application.Current.MainPage = new AppShellCliente();//EN DESARROLLO
+                        await Shell.Current.GoToAsync("//AboutPage");
                     }
                     //Application.Current.MainPage = new AppShell();
                     //await Shell.Current.GoToAsync("//AboutPage");
@@ -243,6 +251,10 @@ namespace AutoPrixApp.ViewModels
             {
                 this.IsBusy = false;
                 await Application.Current.MainPage.DisplayAlert("error", "\n" + e.Message, "ok");
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
             }
         }
 

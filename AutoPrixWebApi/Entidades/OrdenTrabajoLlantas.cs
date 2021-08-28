@@ -8,7 +8,7 @@ namespace AutoPrixWebApi.Entidades
     {
         public Int64 IdOrdenTrabajoLlantas { get; set; }
         public Int64 IdOrdenTrabajoCab { get; set; }
-        public Int64 CodPosicion { get; set; }
+        public string CodPosicion { get; set; }
         public string Estado { get; set; }
         public Decimal Presion { get; set; }
         public string Observacion { get; set; }

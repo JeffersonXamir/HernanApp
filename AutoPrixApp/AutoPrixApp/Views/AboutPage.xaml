@@ -20,15 +20,14 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="0.5" />
         </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
-                    <Image Source="IconHernan3.png" VerticalOptions="Center" HeightRequest="74" />
-
-                </ContentView>
+            <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ContentView Padding="5,40,5,40" VerticalOptions="FillAndExpand">
+                        <Image Source="IconHernan3.png" VerticalOptions="CenterAndExpand" HeightRequest="50" />
+                    </ContentView>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
-        <ScrollView Grid.Row="1">
+            <ScrollView Grid.Row="1">
             <StackLayout  Orientation="Vertical" Padding="0,0,0,0" Spacing="1">
                 <Label Style="{StaticResource TitleMainStyle}" Text="Misión" FontSize="Title"/>
                     <Label Style="{StaticResource NormalBlackLabelStyle}" Text="Nuestra empresa está asociada a la Confederación Nacional De Talleres Automotrices ( CNTA-Ecuador) en capacitación constante con el fin de brindarle a nuestros clientes la satisfacción total de un trabajo altamente calificado." FontSize="16" Padding="0,0,0,0"/>

@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPrixApp.Views.Vehiculos.MantenimientoVehiculos"
+             xmlns:local="clr-namespace:AutoPrixApp.ViewModels"  
+             xmlns:model="clr-namespace:AutoPrixApp.Models" 
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">white</Color>
+            <Style x:Key="myBodyStyle" TargetType="Label"
+                   BaseResourceKey="BodyStyle">
+                <Setter Property="TextColor" Value="Accent" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ContentView Padding="5,5,5,5" VerticalOptions="FillAndExpand">
+                        <Image Source="IconHernan3.png" VerticalOptions="FillAndExpand" HeightRequest="50" />
+                    </ContentView>
+                </StackLayout>
+            </StackLayout>
+            <Frame Padding="10,5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <SearchBar x:Name="txtSearch"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           Placeholder="Placa.."
+                           FontSize="Subtitle"
+                           HorizontalOptions="FillAndExpand"
+                           SearchCommand="{Binding PerformSearch}"
+                           SearchCommandParameter="{Binding Text, Source={x:Reference txtSearch}}"
+                           Keyboard="Text">
+                    </SearchBar>
+                    <Button ImageSource="add.png"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            BorderColor="Black" 
+                            BackgroundColor="Transparent"
+                            Scale="1"
+                            Command="{Binding BtnAgregar}">
+                    </Button>
+                </Grid>
+            </Frame>
+            <StackLayout>
+                <!--
+                <ListView x:Name="ListaVehiculos">
+                </ListView>
+                -->
+                <RefreshView x:DataType="local:MantenimientoVehiculosViewModel" RefreshColor="#2374FF" Command="{Binding LoadItemsCommand}" CommandParameter="{Binding Text, Source={x:Reference txtSearch}}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                    <CollectionView x:Name="ItemsListView"
+                                    ItemsSource="{Binding Items}"
+                                    SelectionMode="Single"
+                                   >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Padding="10" x:DataType="model:VehiculosClientes">
+                                    <!--<Label Text="{Binding cliente}" 
+                                            LineBreakMode="NoWrap" 
+                                            Style="{StaticResource myBodyStyle}" 
+                                            FontSize="16" /> -->
+                                    <Label LineBreakMode="NoWrap" 
+                                            Style="{StaticResource myBodyStyle}" 
+                                            FontSize="16">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Marca}" />
+                                                <Span Text="{Binding Modelo}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="{Binding placa}" 
+                                            LineBreakMode="NoWrap"
+                                            Style="{DynamicResource ListItemDetailTextStyle}"
+                                            FontSize="13" />
+
+                                        <Label Text="{Binding Anio}" 
+                                            LineBreakMode="NoWrap"
+                                            Style="{DynamicResource ListItemDetailTextStyle}"
+                                            FontSize="13" 
+                                            HorizontalTextAlignment="End"
+                                            Grid.Column="1"/>
+                                    </Grid>
+                                    
+
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                                NumberOfTapsRequired="1"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:MantenimientoVehiculosViewModel}}, Path=ItemTapped}"		
+                                                CommandParameter="{Binding .}">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <ContentView>
+                                <StackLayout HorizontalOptions="CenterAndExpand"
+                                             VerticalOptions="CenterAndExpand">
+                                    <Label Text="No hay resultados que mostrar!"
+                                           Margin="10,25,10,10"
+                                           FontAttributes="Bold"
+                                           FontSize="18"
+                                           HorizontalOptions="Fill"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Text="Ingresa o verifica nuevamente la placa..."
+                                           FontAttributes="Italic"
+                                           FontSize="12"
+                                           HorizontalOptions="Fill"
+                                           HorizontalTextAlignment="Center" />  
+                                </StackLayout>
+                            </ContentView>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </RefreshView>
+            </StackLayout>
+        </StackLayout>
+       
+    </ContentPage.Content>
+</ContentPage>

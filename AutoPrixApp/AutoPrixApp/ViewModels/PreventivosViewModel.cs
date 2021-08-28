@@ -85,6 +85,8 @@ namespace AutoPrixApp.ViewModels
             List<VehiculosClientes> lista = new List<VehiculosClientes>();
             try
             {
+                Items.Clear();
+                if (cedula == null || cedula.Equals("")) { return; }
                 var json = await Globales.GetApiAppRoute("VehiculosClientes/GetVehiculosClientes", cedula);
                 jsonResult jsonres = JsonConvert.DeserializeObject<jsonResult>(json.ToString());
 

@@ -25,7 +25,7 @@
             Source="wallpaper.jpeg"
             Grid.ColumnSpan="5"
             Grid.RowSpan="4"
-            Opacity="0.6" />
+            Opacity="6" />
             
             <Image Source="user.png" HeightRequest="80" WidthRequest="80" 
                     Grid.Column="1" 

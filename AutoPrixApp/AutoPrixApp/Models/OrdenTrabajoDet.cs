@@ -16,5 +16,7 @@ namespace AutoPrixApp.Models
         public Int64 UsuarioModifica { get; set; }
         public Int64 FechaModifica { get; set; }
 
+        /*se agregan para mostrar información*/
+        public string Trabajo { get; set; }
     }
 }

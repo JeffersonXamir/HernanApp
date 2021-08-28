@@ -22,7 +22,7 @@ namespace AutoPrixApp.ViewModels
 
 
         #region Variables definition
-        private double kilometraje;
+        private Decimal kilometraje;
         private string observacion;
         private string cliente;
         private string vehiculo;
@@ -42,13 +42,14 @@ namespace AutoPrixApp.ViewModels
         public ImageSource source { get; set; }
         public Command BtnContinuar { get; set; }
         public Command BtnCamera { get; set; }
-
+        
         #endregion
 
         public RecepcionVehiculoViewModel(VehiculosClientes obj1,Int64 tipoTrabajo) {
             try
             {
                 Title = "Recepción del Vehículo";
+                kilometraje = 0;
                 this.BtnContinuar = new Command(this.GotoRegistroTrebajo);
                 this.BtnCamera = new Command(this.GotoBtnCamera);
                 this.listaImagenes = new ObservableCollection<Imagen>();
@@ -60,6 +61,7 @@ namespace AutoPrixApp.ViewModels
                     new FormaPago(3,"3 MESES"),
                     new FormaPago(4,"15 MESES")*/
                 };
+                observacion = "";
                 jsonObj = obj1;
                 Vehiculo = jsonObj.vehiculo;
                 Placa = jsonObj.placa;
@@ -70,9 +72,9 @@ namespace AutoPrixApp.ViewModels
                 Application.Current.MainPage.DisplayAlert("error", "\n" + e.Message, "ok");
             }
         }
-       
-        #region propiedades definition
-        public double Kilometraje { get => kilometraje; set => SetProperty(ref kilometraje, value); }
+
+       #region propiedades definition
+        public Decimal Kilometraje { get => kilometraje; set => SetProperty(ref kilometraje, value); }
         public string Observacion { get => observacion; set => SetProperty(ref observacion, value); }
         public string Vehiculo { get => vehiculo; set => SetProperty(ref vehiculo, value); }
         public string Placa { get => placa; set => SetProperty(ref placa, value); }
@@ -168,9 +170,11 @@ namespace AutoPrixApp.ViewModels
                     //var stream = photo.GetStream();
                     var stream = photo.GetStream();
                     var bytes = new byte[stream.Length];
+                    item.ImageData = bytes;
                     await stream.ReadAsync(bytes, 0, (int)stream.Length);
-                    string base64 = System.Convert.ToBase64String(bytes);
-                    item.Base64 = base64;
+                        //string base64 = System.Convert.ToBase64String(bytes);
+                        //item.Base64 = base64;
+                        item.Base64 = "x00";
                     /* 2 intent
                     var stream = photo.GetStream();
 
@@ -245,7 +249,9 @@ namespace AutoPrixApp.ViewModels
                     obj.IdImagen = item.Id;
                     obj.UsuarioCreacion = Int64.Parse(Preferences.Get("IdUsuario", 0l).ToString());
                     obj.FechaCreacion = DateTime.Parse(DateTime.Now.ToString()); //dd-MM-yyyy HH:mm:ss
+                    obj.SourceImage = item.ImageData;
                     //obj.ImageData = item.ImageData;
+                    obj.Estado = "ING";
                     Lsimagenes.Add(obj);
                     obj = null;
                 }
@@ -263,15 +269,15 @@ namespace AutoPrixApp.ViewModels
                 if (kilometraje.Equals("") || kilometraje.Equals(0)) {
                     throw new Exception("Kilometraje no puede ser 0 o nulo");                    
                 }
-                var kms = Kilometraje > 0 ? Kilometraje : 0;
+                var kms = Kilometraje != 0 ? Kilometraje : 0;
                 objcab.Kilometros = Int64.Parse(kms.ToString().Replace(",", "."));
 
                 if (Observacion.Equals("") || Observacion.Length < 2) {
                     throw new Exception("Ingrese una Observación");
                 }
                 objcab.Observacion = Observacion;
-                DateTime fechaActual = DateTime.Parse(DateTime.Now.Date.ToString("dd-MM-yyyy"));
-                DateTime HoraActual = DateTime.Parse(DateTime.Now.ToString("HH:mm:ss"));
+                DateTime fechaActual = DateTime.Now;//DateTime.Parse(DateTime.Now.Date.ToString("dd-MM-yyyy"));
+                DateTime HoraActual = DateTime.Now;//DateTime.Parse(DateTime.Now.ToString("HH:mm:ss"));
                 objcab.FechaIngreso = fechaActual;
                 objcab.HoraIngreso = HoraActual; 
                 objcab.IdClienteVehiculo = jsonObj.id;
